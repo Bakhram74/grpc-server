@@ -1,4 +1,4 @@
-module github.com/Bakhram74/grpc-server.git
+module github.com/Bakhram74/grpc-server
 
 go 1.23.1
 
