@@ -8,13 +8,10 @@ option go_package = "tuzov.sso.v1;ssov1";
 service Auth {
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
+    rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
 }
 
-// TODO: На будущее, следующий сервис можно описать прямо здесь,
-// либо вынести в отдельный файл
-// service Permissions {
-//    GetUserPermissions(GetUserPermissionsRequest) return UserPermissions
-// }
+
 message RegisterRequest{
     string email = 1;
     string password =2;
@@ -35,13 +32,19 @@ message LoginResponse{
 }
 
 
+message IsAdminRequest {
+    int64 user_id = 1; 
+  }
+  
+  message IsAdminResponse {
+    bool is_admin = 1;  
+  }
 
 
-
-//protoc -I proto proto/sso/sso.proto 
-//--go_out=./gen/go/
- //--go_opt=paths=source_relative 
-//--go-grpc_out=./gen/go/
-//--go-grpc_opt=paths=source_relative
+// protoc -I proto proto/sso/sso.proto 
+// --go_out=./gen/go/
+//  --go_opt=paths=source_relative 
+// --go-grpc_out=./gen/go/
+// --go-grpc_opt=paths=source_relative
 
 //protoc -I proto proto/sso/*.proto
